@@ -36,6 +36,8 @@ Caso queira buscar um único recurso acessar o endpoint passando o id :
 
 endpoint GET "/agendamentos/{id}"
 
+Caso passe um id inválido o sistema retornará um erro 404 Not Found
+
 
 
 
