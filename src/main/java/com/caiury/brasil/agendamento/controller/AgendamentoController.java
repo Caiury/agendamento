@@ -3,6 +3,8 @@ package com.caiury.brasil.agendamento.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +49,7 @@ public class AgendamentoController {
 
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public ResponseEntity<Agendamento> cadastrarAgendamento(@RequestBody Agendamento agendamentoRequest) {
+	public ResponseEntity<Agendamento> cadastrarAgendamento(@RequestBody @Valid Agendamento agendamentoRequest) {
 
 		Agendamento agendamento = agendamentoService.salvarAgendamento(agendamentoRequest);
 

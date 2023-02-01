@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Agendamento {
@@ -15,14 +16,18 @@ public class Agendamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotNull
 	private Long contaOrigem;
 
+	@NotNull
 	private Long contaDestino;
 
+	@NotNull
 	private BigDecimal valorTransferencia;
 
 	private BigDecimal taxa;
 
+	@NotNull
 	private LocalDate dataTransferencia;
 
 	private LocalDate dataAgendamento = LocalDate.now();
