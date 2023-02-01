@@ -25,13 +25,9 @@ public class AgendamentoService {
 
 		long dias = ChronoUnit.DAYS.between(agendamento.getDataAgendamento(), agendamento.getDataTransferencia());
 
-		BigDecimal valorTaxa = null;
-
 		if (dias == 0 || agendamento.getValorTransferencia().compareTo(BigDecimal.valueOf(1000)) <= 0) {
 
-			valorTaxa = calculoTaxa(agendamento);
-
-			agendamento.setTaxa(valorTaxa);
+			agendamento.setTaxa(calculoTaxa(agendamento));
 
 			return agendamentoRepository.save(agendamento);
 		}
@@ -46,18 +42,14 @@ public class AgendamentoService {
 
 		if (dias > 10 && dias <= 20) {
 
-			valorTaxa = calculoTaxa(agendamento, BigDecimal.valueOf(8.2));
-
-			agendamento.setTaxa(valorTaxa);
+			agendamento.setTaxa(calculoTaxa(agendamento, BigDecimal.valueOf(8.2)));
 
 			return agendamentoRepository.save(agendamento);
 		}
 
 		if (dias > 20 && dias <= 30) {
 
-			valorTaxa = calculoTaxa(agendamento, BigDecimal.valueOf(6.9));
-
-			agendamento.setTaxa(valorTaxa);
+			agendamento.setTaxa(calculoTaxa(agendamento, BigDecimal.valueOf(6.9)));
 
 			return agendamentoRepository.save(agendamento);
 
@@ -65,25 +57,16 @@ public class AgendamentoService {
 
 		if (dias > 30 && dias <= 40) {
 
-			valorTaxa = calculoTaxa(agendamento, BigDecimal.valueOf(4.7));
-
-			agendamento.setTaxa(valorTaxa);
+			agendamento.setTaxa(calculoTaxa(agendamento, BigDecimal.valueOf(4.7)));
 
 			return agendamentoRepository.save(agendamento);
 
 		}
 
-		if (dias > 40) {
+		agendamento.setTaxa(calculoTaxa(agendamento, BigDecimal.valueOf(1.7)));
 
-			valorTaxa = calculoTaxa(agendamento, BigDecimal.valueOf(1.7));
+		return agendamentoRepository.save(agendamento);
 
-			agendamento.setTaxa(valorTaxa);
-
-			return agendamentoRepository.save(agendamento);
-
-		}
-
-		return null;
 	}
 
 	public BigDecimal calculoTaxa(Agendamento agendamento) {
